@@ -57,8 +57,8 @@ jobs:
           docker_layer_caching: true
       - run: |
           echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-      - run: docker build -t user_name/oc_lettings:$CIRCLE_BRANCH .
-      - run: docker push user_name/oc_lettings:$CIRCLE_BRANCH
+      - run: docker build -t $DOCKERHUB_USERNAME/oc_lettings:$CIRCLE_BRANCH .
+      - run: docker push $DOCKERHUB_USERNAME/oc_lettings:$CIRCLE_BRANCH
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
