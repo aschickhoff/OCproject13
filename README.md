@@ -1,78 +1,39 @@
-## Summary
+<h1 align="center">OpenClassrooms Project 13</h1>
 
-Orange County Lettings Website
+# Scale a Django Application Using Modular Architecture
+> This is my project No. 13 for OpenClassrooms where I had to improve a company’s Django website, both in terms of the code and its deployment.
 
-## Local development
+## Table of Contents
+* [General Info](#general-information)
+* [Postman documentation](#postman-documentation)
+* [Prerequisite](#prerequisite)
+* [Setup](#setup)
 
-### Prerequisites
 
-- GitHub account with read access to this repository
-- Git CLI
-- SQLite3 CLI
-- Python interpreter, version 3.6 or higher
+## General Information
+- Original GitHub repository used: [OC Lettings](https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings "OC Lettings")
 
-In the rest of the local development documentation, it is assumed the command `python` in 
-your OS shell runs the above Python interpreter (unless a virtual environment is activated).
+### Areas of the site and deployment to be improved/added
+#### Miscellaneous technical debt refactor
+- Fixing the linting errors
+- Ensuring the pluralization is correct in the admin section of the site
 
-### macOS / Linux
+#### Modular architecture refactor
+- Creating a new app lettings, containing the address and letting models and a new app profiles, containing the profile model
+- Using Django migrations, to create new tables for the address, letting and profile models in the database
+- Populating the new tables with the current data
+- Renaming lettings_index.html to index.html and lettings_index view to index
+- Moving the lettings and profiles URLs from oc_lettings_site into the new apps, keeping ROOT_URLCONF the same
+- Moving the lettings and profiles views in oc_lettings_site and the templates in templates into lettings or profiles
+- Using Django migrations to remove the old tables from the database
+- Making oc_lettings_site not an app and removing the appropriate files.
+- Creating tests so that pytest and flake8 should continue to be usable.
 
-#### Clone the repository
+#### CI/CD pipeline using CircleCI and Heroku
+- Creating a build-and-test job that replicates the local development environment
+- Creating a containerization job that builds a Docker image of the site and pushes it to the Docker Hub container registry
+- Creating a deploy-production job that deploys the site using Heroku
 
-- `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings.git`
+#### Production error logging using Sentry
+- Using Sentry so that uncaught exceptions are propagated through to the issues page of a Sentry project.
 
-#### Create the virtual environment
-
-- `cd /path/to/Python-OC-Lettings`
-- `python -m venv venv`
-- `apt-get install python3-venv` (If previous step errors with package not found on Ubuntu)
-- Activate the environment `source venv/bin/activate`
-- Confirm the command `python` now runs the Python interpreter in the virtual environment,
-`which python`
-- Confirm the version of the Python interpreter is 3.6 or higher `python --version`
-- Confirm the command `pip` runs the pip executable in the virtual environment, `which pip`
-- To deactivate the environment, `deactivate`
-
-#### Run the site
-
-- `cd /path/to/Python-OC-Lettings`
-- `source venv/bin/activate`
-- `pip install --requirement requirements.txt`
-- `python manage.py runserver`
-- Go to `http://localhost:8000` in a browser.
-- Confirm the site is running and can be navigated (you should see several profiles and lettings).
-
-#### Linting
-
-- `cd /path/to/Python-OC-Lettings`
-- `source venv/bin/activate`
-- `flake8`
-
-#### Unit tests
-
-- `cd /path/to/Python-OC-Lettings`
-- `source venv/bin/activate`
-- `pytest`
-
-#### Database
-
-- `cd /path/to/Python-OC-Lettings`
-- Open a shell session `sqlite3`
-- Connect to the database `.open oc-lettings-site.sqlite3`
-- Display tables in the database `.tables`
-- Display columns in the profiles table, `pragma table_info(Python-OC-Lettings_profile);`
-- Run a query on the profiles table, `select user_id, favorite_city from
-  Python-OC-Lettings_profile where favorite_city like 'B%';`
-- `.quit` to exit
-
-#### Admin panel
-
-- Go to `http://localhost:8000/admin`
-- Login with user `admin`, password `Abc1234!`
-
-### Windows
-
-Using PowerShell, as above except:
-
-- To activate the virtual environment, `.\venv\Scripts\Activate.ps1` 
-- Replace `which <my-command>` with `(Get-Command <my-command>).Path`
