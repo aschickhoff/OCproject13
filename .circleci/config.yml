@@ -60,14 +60,7 @@ jobs:
           echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
       - run: docker build -t $DOCKERHUB_USERNAME/oc_lettings:$CIRCLE_BRANCH .
       - run: docker push $DOCKERHUB_USERNAME/oc_lettings:$CIRCLE_BRANCH
-  # heroku_deploy:
-  #   steps:
-  #     - checkout
-  #     - run:
-  #           name: Deploy Main to Heroku
-  #           command: |
-  #           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
-    
+ 
 
 
 
@@ -80,3 +73,11 @@ workflows:
       - build-and-push-to-dockerhub:
           requires:
             - build-and-test
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git:
+          requires:
+            - build-and-push-to-dockerhub
+          filters:
+          branches:
+            only: main
