@@ -115,7 +115,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 sentry_sdk.init(
-    dsn=os.getenv("DSNkey"),
+    dsn=os.environ.get("DSNkey"),
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
