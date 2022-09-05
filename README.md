@@ -48,5 +48,15 @@
 - [SQLite3](https://www.sqlite.org/index.html "SQLite3") is installed for a command-line interface
 - [Docker](https://www.docker.com/ "Docker") is installed
 
-
+## Setup
+### Clone repository
+```Bash
+cd /path/to/project/
+git clone https://github.com/aschickhoff/OCproject13.git
+```
+### Create virtual environment
+```Bash
+cd /path/to/OCproject13/
+python -m venv venv
+```
 *Work in progress*
