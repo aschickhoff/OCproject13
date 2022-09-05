@@ -53,7 +53,7 @@ jobs:
       - image: cimg/python:3.10.2
         auth:
           username: aschickhoff  # can specify string literal values
-          password: d6KQPVtGyRd9uB  # $DOCKERHUB_PASSWORD  # or project environment variable reference
+          password: $DOCKERHUB_PASSWORD  # or project environment variable reference
     steps:
       - checkout
       - setup_remote_docker:
