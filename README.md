@@ -35,5 +35,18 @@
 - Creating a deploy-production job that deploys the site using Heroku
 
 #### Production error logging using Sentry
-- Using Sentry so that uncaught exceptions are propagated through to the issues page of a Sentry project.
+- Using Sentry so that uncaught exceptions are propagated through to the issues page of a Sentry project
 
+## Prerequisite
+- [Python 3.10.4](https://www.python.org/ "Python") is installed
+- You need a [GitHub](https://github.com/ "GitHub") account
+- You need a [CirleCI](https://circleci.com/ "CirleCI") account
+- You need a [Docker](https://www.docker.com/ "Docker") account
+- You need a [Heroku](https://www.heroku.com/ "Heroku") account
+- You need a [Sentry](https://sentry.io/ "Sentry") account
+- [Git](https://git-scm.com/ "Git") is installed for a command-line interface
+- [SQLite3](https://www.sqlite.org/index.html "SQLite3") is installed for a command-line interface
+- [Docker](https://www.docker.com/ "Docker") is installed
+
+
+*Work in progress*
