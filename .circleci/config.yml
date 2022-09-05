@@ -79,5 +79,5 @@ workflows:
           requires:
             - build-and-push-to-dockerhub
           filters:
-          branches:
-            only: main
+            branches:
+              only: main
