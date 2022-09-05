@@ -1,5 +1,9 @@
 FROM python:3.10
-WORKDIR /circle_ci_python_example
-COPY ./requirements.txt .
+
+WORKDIR /app
+
+ENV PORT 8000
+
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
