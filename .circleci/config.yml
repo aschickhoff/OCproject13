@@ -91,8 +91,3 @@ workflows:
             branches:
               only:
                 - main
-
-
-
-Set up the deployment so changes to the master branch in GitHub trigger containerization and deployment of the site to Heroku.
-Changes to other branches should only trigger the build-and-test job and do not deploy the site to Heroku or perform containerization.
