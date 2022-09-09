@@ -64,8 +64,8 @@ jobs:
           docker_layer_caching: true
       - run: |
           echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-      - run: docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1 $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
-      - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:${CIRCLE_SHA1:0:10}
+      - run: docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1 -t $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
+      - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1
   deploy-to-heroku:
     docker:
       - image: cimg/python:3.10.2
