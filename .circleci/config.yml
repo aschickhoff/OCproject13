@@ -67,18 +67,18 @@ jobs:
       - run: docker build --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1 .
       - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1
       - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
-  deploy-to-heroku:
-    docker:
-      - image: cimg/python:3.10.2
-        auth:
-          username: $DOCKERHUB_USERNAME  # can specify string literal values
-          password: $DOCKERHUB_PASSWORD  # or project environment variable reference
-    steps:
-      - checkout
-      - run:
-          name: Deploy Main to Heroku
-          command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
+  # deploy-to-heroku:
+  #   docker:
+  #     - image: cimg/python:3.10.2
+  #       auth:
+  #         username: $DOCKERHUB_USERNAME  # can specify string literal values
+  #         password: $DOCKERHUB_PASSWORD  # or project environment variable reference
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Deploy Main to Heroku
+  #         command: |
+  #           git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
 
 
 # Invoke jobs via workflow
@@ -94,7 +94,14 @@ workflows:
             branches:
               only:
                 - main
-      - deploy-to-heroku:
+      # - deploy-to-heroku:
+      #     requires:
+      #       - build-and-push-to-dockerhub
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
+      - heroku/deploy-via-git:
           requires:
             - build-and-push-to-dockerhub
           filters:
