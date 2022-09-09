@@ -73,6 +73,7 @@ jobs:
         auth:
           username: $DOCKERHUB_USERNAME  # can specify string literal values
           password: $DOCKERHUB_PASSWORD  # or project environment variable reference
+    executor: heroku/default
     steps:
       - checkout
       - run: heroku config:set SECRET_KEY=$SECRET_KEY -a $HEROKU_APP_NAME
