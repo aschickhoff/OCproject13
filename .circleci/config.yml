@@ -10,7 +10,7 @@ orbs:
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.5.0
-  docker: circleci/docker@2.1.3
+  # docker: circleci/docker@2.1.3
   heroku: circleci/heroku@1.2.6
 
 # Define a job to be invoked later in a workflow.
