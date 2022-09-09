@@ -24,6 +24,9 @@ jobs:
     # Change the version below to your required version of python
     docker:
       - image: cimg/python:3.10.2
+        auth:
+          username: $DOCKERHUB_USERNAME  # can specify string literal values
+          password: $DOCKERHUB_PASSWORD  # or project environment variable reference
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
@@ -31,9 +34,9 @@ jobs:
     # CircleCI will report the results back to your VCS provider.
     steps:
       - checkout
-      - run:
-          name: update pip
-          command: python3.10 -m pip install --upgrade pip
+      # - run:
+      #     name: update pip
+      #     command: python3.10 -m pip install --upgrade pip
       - run:
           name: install dependencies
           command: pip install -r requirements.txt
@@ -52,7 +55,7 @@ jobs:
     docker:
       - image: cimg/python:3.10.2
         auth:
-          username: aschickhoff  # can specify string literal values
+          username: $DOCKERHUB_USERNAME  # can specify string literal values
           password: $DOCKERHUB_PASSWORD  # or project environment variable reference
     steps:
       - checkout
@@ -61,13 +64,13 @@ jobs:
           docker_layer_caching: true
       - run: |
           echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-      - run: docker build -t $DOCKERHUB_USERNAME/oc_lettings:$CIRCLE_BRANCH .
-      - run: docker push $DOCKERHUB_USERNAME/oc_lettings:$CIRCLE_BRANCH
+      - run: docker build -t $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_BRANCH .
+      - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_BRANCH
   deploy-to-heroku:
     docker:
       - image: cimg/python:3.10.2
         auth:
-          username: aschickhoff  # can specify string literal values
+          username: $DOCKERHUB_USERNAME  # can specify string literal values
           password: $DOCKERHUB_PASSWORD  # or project environment variable reference
     steps:
       - checkout
