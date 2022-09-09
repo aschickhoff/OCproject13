@@ -76,6 +76,7 @@ jobs:
     executor: heroku/default
     steps:
       - checkout
+      - heroku/install
       - run: heroku config:set SECRET_KEY=$SECRET_KEY -a $HEROKU_APP_NAME
       - run:
           name: Deploy Main to Heroku
