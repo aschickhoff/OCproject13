@@ -65,6 +65,7 @@ jobs:
       - run: |
           echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
       - run: docker build --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1 .
+      - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1
       - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
   deploy-to-heroku:
     docker:
