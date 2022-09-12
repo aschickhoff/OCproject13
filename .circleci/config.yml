@@ -27,6 +27,8 @@ jobs:
         auth:
           username: $DOCKERHUB_USERNAME  # can specify string literal values
           password: $DOCKERHUB_PASSWORD  # or project environment variable reference
+        environment:
+          SECRET_KEY: $SECRET_KEY
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
@@ -40,7 +42,7 @@ jobs:
       - run:
           name: install dependencies
           command: pip install -r requirements.txt
-          run: printf $SECRET_KEY | docker secret create SECRET_KEY .env
+          # run: printf $SECRET_KEY | docker secret create SECRET_KEY .env
           # run: print("SECRET_KEY=" + $SECRET_KEY) > .env
           # run: print("DEBUG=" + $DEBUG) > .env
       # - python/install-packages:
