@@ -53,7 +53,7 @@ jobs:
           command: flake8
   build-and-push-to-dockerhub:
     docker:
-      - image: cimg/python:3.10.7
+      - image: cimg/python:3.10.6
         auth:
           username: $DOCKERHUB_USERNAME  # can specify string literal values
           password: $DOCKERHUB_PASSWORD  # or project environment variable reference
