@@ -4,8 +4,8 @@ WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DSNkey $SENTRY_DSN
-ENV SECRET_KEY $SECRET_KEY
+ENV DSNkey $DSNkey
+
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
