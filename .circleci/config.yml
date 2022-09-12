@@ -23,7 +23,7 @@ jobs:
     # The executor is the environment in which the steps below will be executed - below will use a python 3.10.2 container
     # Change the version below to your required version of python
     docker:
-      - image: cimg/python:3.10.2
+      - image: cimg/python:3.10.7
         auth:
           username: $DOCKERHUB_USERNAME  # can specify string literal values
           password: $DOCKERHUB_PASSWORD  # or project environment variable reference
@@ -53,7 +53,7 @@ jobs:
           command: flake8
   build-and-push-to-dockerhub:
     docker:
-      - image: cimg/python:3.10.2
+      - image: cimg/python:3.10.7
         auth:
           username: $DOCKERHUB_USERNAME  # can specify string literal values
           password: $DOCKERHUB_PASSWORD  # or project environment variable reference
@@ -69,7 +69,7 @@ jobs:
       - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
   deploy-to-heroku:
     docker:
-      - image: cimg/python:3.10.2
+      - image: cimg/python:3.10.7
         auth:
           username: $DOCKERHUB_USERNAME  # can specify string literal values
           password: $DOCKERHUB_PASSWORD  # or project environment variable reference
@@ -105,10 +105,3 @@ workflows:
             branches:
               only:
                 - main
-      # - heroku/deploy-via-git:
-      #     requires:
-      #       - build-and-push-to-dockerhub
-      #     filters:
-      #       branches:
-      #         only:
-      #           - main
