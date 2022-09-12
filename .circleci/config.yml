@@ -40,7 +40,7 @@ jobs:
       - run:
           name: install dependencies
           command: pip install -r requirements.txt
-          run: printf $SECRET_KEY | docker secret create SECRET_KEY -
+          run: printf $SECRET_KEY | docker secret create SECRET_KEY .env
           # run: print("SECRET_KEY=" + $SECRET_KEY) > .env
           # run: print("DEBUG=" + $DEBUG) > .env
       # - python/install-packages:
