@@ -2,7 +2,7 @@ import environ
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
-from django.core.management.utils import get_random_secret_key
+# from django.core.management.utils import get_random_secret_key
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -15,8 +15,8 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default=get_random_secret_key())
-
+SECRET_KEY = env('SECRET_KEY')
+# default=get_random_secret_key()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=False)
 
