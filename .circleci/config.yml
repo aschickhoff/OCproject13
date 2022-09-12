@@ -40,8 +40,9 @@ jobs:
       - run:
           name: install dependencies
           command: pip install -r requirements.txt
-          run: print("SECRET_KEY=" + $SECRET_KEY) > .env
-          run: print("DEBUG=" + $DEBUG) > .env
+          run: printf $SECRET_KEY | docker secret create SECRET_KEY -
+          # run: print("SECRET_KEY=" + $SECRET_KEY) > .env
+          # run: print("DEBUG=" + $DEBUG) > .env
       # - python/install-packages:
       #     pkg-manager: pip
           # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
