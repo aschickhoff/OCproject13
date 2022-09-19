@@ -73,8 +73,10 @@ jobs:
           name: Build the image
           command: docker build --build-arg SECRET_KEY=$SECRET_KEY --build-arg DSNkey=$DSNkey --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1 .
       - run:
-          name: Push the image
+          name: Push the image with CircleCI commit hash
           command: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1
+      - run:
+          name: Push the image with "latest" tag
           command: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
 
       # - run: |
