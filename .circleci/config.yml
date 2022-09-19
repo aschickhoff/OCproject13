@@ -79,11 +79,6 @@ jobs:
           name: Push the image with "latest" tag
           command: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
 
-      # - run: |
-      #     echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-      # - run: docker build --build-arg SECRET_KEY=$SECRET_KEY --build-arg DSNkey=$DSNkey --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1 .
-      # - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1
-      # - run: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
   deploy-to-heroku:
     docker:
       - image: cimg/python:3.10.6
@@ -96,9 +91,6 @@ jobs:
       - run:
           name: Setting configs
           command: heroku config:set SECRET_KEY=$SECRET_KEY DEBUG=$DEBUG DSNkey=$DSNkey -a $HEROKU_APP_NAME
-      # - run: heroku config:set SECRET_KEY=$SECRET_KEY -a $HEROKU_APP_NAME
-      # - run: heroku config:set DEBUG=$DEBUG -a $HEROKU_APP_NAME
-      # - run: heroku config:set DSNkey=$DSNkey -a $HEROKU_APP_NAME
       - run:
           name: Deploy "main" to Heroku
           command: |
