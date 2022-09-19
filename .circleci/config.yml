@@ -74,7 +74,8 @@ jobs:
           command: docker build --build-arg SECRET_KEY=$SECRET_KEY --build-arg DSNkey=$DSNkey --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest --tag $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1 .
       - run:
           name: Push the image
-          command: docker image push --all-tags $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE
+          command: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:$CIRCLE_SHA1
+          command: docker push $DOCKERHUB_USERNAME/$DOCKERHUB_IMAGE:latest
 
       # - run: |
       #     echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
