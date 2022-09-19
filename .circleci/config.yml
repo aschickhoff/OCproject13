@@ -39,7 +39,7 @@ jobs:
       #     name: update pip
       #     command: python3.10 -m pip install --upgrade pip
       - run:
-          name: install dependencies
+          name: Install dependencies
           command: pip install -r requirements.txt
           # run: printf $SECRET_KEY | docker secret create SECRET_KEY .env
           # run: print("SECRET_KEY=" + $SECRET_KEY) > .env
