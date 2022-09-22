@@ -54,9 +54,43 @@
 cd /path/to/project/
 git clone https://github.com/aschickhoff/OCproject13.git
 ```
-### Create virtual environment
+### Create and activate virtual environment
 ```Bash
 cd /path/to/OCproject13/
 python -m venv venv
+.\env\Scripts\activate
 ```
+### Install dependencies
+```Bash
+pip install -r requirements.txt
+```
+### Run the site
+```Bash
+python manage.py migrate
+python manage.py runserver
+```
+Go to http://localhost:8000 in a browser to confirm the site is running and can be navigated.
+### Linting
+```Bash
+flake8
+```
+### Unit tests
+```Bash
+pytest
+```
+### Database
+- Open a shell session 'sqlite3'
+- Connect to the database '.open oc-lettings-site.sqlite3'
+- Display tables in the database '.tables'
+- Display columns in the profiles table, 'pragma table_info(profiles_profile);'
+- Run a query on the profiles table, 'select user_id, favorite_city from profiles_profile where favorite_city like 'B%';'
+- '.quit' to exit
+### Admin panel
+Go to http://localhost:8000/admin
+Login with user 'admin', password 'Abc1234!'
+
+## Docker
+### Run the app locally:
+- Build the image `docker build -t <image-name> .`
+- Run the image 'docker run -dp 8000:8000 aschickhoff/oc_lettings:latest'
 *Work in progress*
