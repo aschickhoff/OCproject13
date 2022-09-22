@@ -8,6 +8,9 @@
 * [Postman documentation](#postman-documentation)
 * [Prerequisite](#prerequisite)
 * [Setup](#setup)
+* [Docker](#docker)
+* [Deployment](#deployment)
+* [Sentry](#sentry)
 
 
 ## General Information
