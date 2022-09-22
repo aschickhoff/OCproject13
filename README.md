@@ -79,18 +79,50 @@ flake8
 pytest
 ```
 ### Database
-- Open a shell session 'sqlite3'
-- Connect to the database '.open oc-lettings-site.sqlite3'
-- Display tables in the database '.tables'
-- Display columns in the profiles table, 'pragma table_info(profiles_profile);'
-- Run a query on the profiles table, 'select user_id, favorite_city from profiles_profile where favorite_city like 'B%';'
-- '.quit' to exit
+- Open a shell session `sqlite3`
+- Connect to the database `.open oc-lettings-site.sqlite3`
+- Display tables in the database `.tables`
+- Display columns in the profiles table, `pragma table_info(profiles_profile);`
+- Run a query on the profiles table, `select user_id, favorite_city from profiles_profile where favorite_city like 'B%';`
+- `.quit` to exit
 ### Admin panel
 Go to http://localhost:8000/admin
-Login with user 'admin', password 'Abc1234!'
+Login with user `admin`, password `Abc1234!`
 
 ## Docker
 ### Run the app locally:
 - Build the image `docker build -t <image-name> .`
-- Run the image 'docker run -dp 8000:8000 aschickhoff/oc_lettings:latest'
-*Work in progress*
+- Run the image `docker run -dp 8080:8080 --env-file .env <image-name>`
+You should be able to run the app at http://localhost:8080/
+### Pull latest image from DockerHub
+- `docker run -dp 8080:8080 aschickhoff/oc_lettings:latest`
+You should be able to run the app at http://localhost:8080/
+
+## Deployment
+### Heroku
+- Connect with Heroku `heroku login`
+- Create Heroku app `heroku create <app-name> --region eu`
+- Push repo to Heroku `git push heroku main`
+- Run the app `heroku open`
+You should be able to run the app at https://<app-name>.herokuapp.com/
+### Deployment with CirleCI
+1. Connect with CirleCI and link your account to your GitHub account
+2. Go to `Projects` and choose your project from GitHub
+3. Set the following environment variables in your CircleCi project
+- `DOCKERHUB_IMAGE` your image name
+- `DOCKERHUB_PASSWORD` your password for dockerhub
+- `DOCKERHUB_USERNAME` your username for dockerhub
+- `DSNkey` your Sentry key
+- `HEROKU_API_KEY` your Heroku api key
+- `HEROKU_APP_NAME` the Heroku app name
+- `SECRET_KEY` your SecretKey for the repo
+The next time you push your project to Github, CircleCI will run the following jobs:
+- build-and-test
+- build-and-push-to-dockerhub
+- deploy-to-heroku
+
+## Sentry
+The Sentry error logging can be triggered by browsing the following url: https://<app-name>.herokuapp.com/sentry-debug/ or locally http://localhost:8000/sentry-debug (http://localhost:8080/sentry-debug/)
+
+You can find an example here:
+https://sentry.io/share/issue/57b1f5b10a0d447990fb3340cc873f81/
