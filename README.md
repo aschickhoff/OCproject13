@@ -115,7 +115,7 @@ You should be able to run the app at https://<app-name>.herokuapp.com/
 - `DOCKERHUB_IMAGE` your image name
 - `DOCKERHUB_PASSWORD` your password for dockerhub
 - `DOCKERHUB_USERNAME` your username for dockerhub
-- `DSNkey` your Sentry key
+- `DSNkey` your Sentry project url
 - `HEROKU_API_KEY` your Heroku api key
 - `HEROKU_APP_NAME` the Heroku app name
 - `SECRET_KEY` your SecretKey for the repo
